@@ -38,7 +38,7 @@ export default function Home() {
       <div className="container mx-auto py-4">
         <div className="grid gap-y-4">
           {variables.map((variable, index) => (
-            <div key={index} className="grid grid-cols-2 gap-x-4">
+            <div key={index} className="flex gap-x-4">
               <input
                 value={variable.key}
                 onPaste={(e) => pasteHandle(e, index)}
@@ -54,7 +54,7 @@ export default function Home() {
                 }}
                 type="text"
                 placeholder="Örn: API_URL"
-                className="h-10 rounded bg-black placeholder:text-white/50 border border-white/20 text-sm px-3 text-white outline-none"
+                className="flex-1 h-10 rounded bg-black placeholder:text-white/50 border border-white/20 text-sm px-3 text-white outline-none"
               />
               <input
                 value={variable.value}
@@ -69,8 +69,18 @@ export default function Home() {
                   );
                 }}
                 type="text"
-                className="h-10 rounded bg-black placeholder:text-white/50 border border-white/20 text-sm px-3 text-white outline-none"
+                className="flex-1 h-10 rounded bg-black placeholder:text-white/50 border border-white/20 text-sm px-3 text-white outline-none"
               />
+              <button
+                onClick={() => {
+                  setVariables((variables) =>
+                    variables.filter((_, i) => i !== index)
+                  );
+                }}
+                className="bg-white text-red-500 border border-red-500 rounded-lg p-2 w-20 hover:bg-red-500 hover:text-white"
+              >
+                Sil
+              </button>
             </div>
           ))}
         </div>
